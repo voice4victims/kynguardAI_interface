@@ -1,0 +1,337 @@
+# Contributing to KynGuard AI
+
+Thank you for your interest in contributing to KynGuard AI! This document provides guidelines for contributing to the project.
+
+## 🎯 Ways to Contribute
+
+- **Report bugs** - Help us identify and fix issues
+- **Suggest features** - Share ideas for improvements
+- **Improve documentation** - Help make our docs clearer
+- **Submit pull requests** - Contribute code improvements
+- **Test releases** - Try beta versions and provide feedback
+
+## 🐛 Reporting Bugs
+
+Before creating a bug report, please:
+
+1. **Check existing issues** - Someone might have already reported it
+2. **Use the latest version** - The bug might already be fixed
+3. **Test thoroughly** - Make sure it's reproducible
+
+### Bug Report Template
+
+```markdown
+**Describe the bug**
+A clear description of what the bug is.
+
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '...'
+3. See error
+
+**Expected behavior**
+What you expected to happen.
+
+**Screenshots**
+If applicable, add screenshots.
+
+**Environment:**
+- WordPress Version: [e.g., 6.4]
+- PHP Version: [e.g., 8.1]
+- Plugin Version: [e.g., 1.0.0]
+- Theme: [e.g., Divi 4.24]
+- Browser: [e.g., Chrome 120]
+
+**Additional context**
+Any other relevant information.
+```
+
+## ✨ Suggesting Features
+
+Feature requests are welcome! Please:
+
+1. **Be specific** - Describe the feature in detail
+2. **Explain the use case** - Why is this needed?
+3. **Consider alternatives** - Are there other ways to achieve this?
+
+### Feature Request Template
+
+```markdown
+**Is your feature request related to a problem?**
+A clear description of the problem.
+
+**Describe the solution you'd like**
+What you want to happen.
+
+**Describe alternatives you've considered**
+Other solutions or features you've thought about.
+
+**Additional context**
+Any other relevant information.
+```
+
+## 🔧 Development Setup
+
+### Prerequisites
+
+- WordPress 6.0+
+- PHP 7.4+
+- Node.js 14+ (for development tools)
+- Git
+- n8n instance (for testing webhook integration)
+
+### Local Development
+
+```bash
+# Clone the repository
+git clone https://github.com/YOUR-USERNAME/kynguardAI.git
+cd kynguardAI
+
+# Set up WordPress locally
+# (Use Local by Flywheel, XAMPP, or Docker)
+
+# Copy plugin to WordPress plugins directory
+cp -r . /path/to/wordpress/wp-content/plugins/heartwork-defense-ai/
+
+# Activate plugin in WordPress admin
+```
+
+### Testing
+
+Before submitting:
+
+1. **Test functionality** - Make sure features work as expected
+2. **Test responsiveness** - Check mobile and desktop views
+3. **Test compatibility** - Verify with Divi and other themes
+4. **Check console** - No JavaScript errors
+5. **Review code** - Follow coding standards
+
+## 📝 Pull Request Process
+
+### 1. Fork the Repository
+
+Click "Fork" on GitHub and clone your fork:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/kynguardAI.git
+cd kynguardAI
+```
+
+### 2. Create a Branch
+
+```bash
+git checkout -b feature/your-feature-name
+# or
+git checkout -b fix/bug-description
+```
+
+Branch naming convention:
+- `feature/` - New features
+- `fix/` - Bug fixes
+- `docs/` - Documentation updates
+- `refactor/` - Code refactoring
+- `test/` - Adding tests
+
+### 3. Make Your Changes
+
+- Write clean, readable code
+- Follow WordPress coding standards
+- Add comments for complex logic
+- Update documentation if needed
+
+### 4. Test Your Changes
+
+```bash
+# Test manually in WordPress
+# Check browser console for errors
+# Test on mobile devices
+# Verify with Divi Builder
+```
+
+### 5. Commit Your Changes
+
+```bash
+git add .
+git commit -m "Brief description of changes"
+```
+
+**Commit message format:**
+```
+Type: Brief description
+
+Detailed explanation if needed.
+
+Fixes #issue-number (if applicable)
+```
+
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+
+Examples:
+```
+feat: Add voice input support for chat interface
+
+Implemented Web Speech API integration for voice-to-text
+functionality in the chat interface.
+
+Fixes #42
+```
+
+```
+fix: Resolve mobile scroll issue in chat window
+
+Chat messages were not scrolling properly on iOS devices.
+Added -webkit-overflow-scrolling: touch property.
+
+Fixes #38
+```
+
+### 6. Push to GitHub
+
+```bash
+git push origin feature/your-feature-name
+```
+
+### 7. Create Pull Request
+
+1. Go to your fork on GitHub
+2. Click "New Pull Request"
+3. Select your branch
+4. Fill out the PR template
+5. Submit!
+
+### Pull Request Template
+
+```markdown
+## Description
+Brief description of what this PR does.
+
+## Type of Change
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Breaking change
+- [ ] Documentation update
+
+## How Has This Been Tested?
+Describe the tests you ran.
+
+## Checklist
+- [ ] My code follows the project's coding standards
+- [ ] I have tested my changes thoroughly
+- [ ] I have updated the documentation
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix/feature works
+```
+
+## 💻 Coding Standards
+
+### PHP
+
+Follow [WordPress PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/):
+
+```php
+// Good
+function heartwork_process_data( $data ) {
+    if ( empty( $data ) ) {
+        return false;
+    }
+    
+    return sanitize_text_field( $data );
+}
+
+// Use WordPress functions
+$value = get_option( 'heartwork_setting' );
+$escaped = esc_html( $value );
+```
+
+### JavaScript
+
+Follow [WordPress JavaScript Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/javascript/):
+
+```javascript
+// Good
+jQuery( document ).ready( function( $ ) {
+    const conversationId = $( '.heartwork-ai-module' ).data( 'conversation-id' );
+    
+    if ( ! conversationId ) {
+        return;
+    }
+    
+    processConversation( conversationId );
+} );
+```
+
+### CSS
+
+```css
+/* Use consistent naming */
+.heartwork-ai-module { }
+.heartwork-chat-messages { }
+.heartwork-form-group { }
+
+/* Use CSS variables for theming */
+.heartwork-ai-module {
+    --primary-color: #2A3B6D;
+    --user-bubble-color: #E0E7FF;
+}
+```
+
+## 📖 Documentation
+
+When adding features:
+
+- Update README.md
+- Add comments to complex code
+- Update CHANGELOG.md
+- Add examples if applicable
+- Update inline documentation
+
+## 🔐 Security
+
+- **Never commit** sensitive data (API keys, passwords)
+- **Sanitize** all user inputs
+- **Escape** all outputs
+- **Validate** file uploads
+- **Use nonces** for form submissions
+- **Prepare** SQL statements
+
+## ⚖️ License
+
+By contributing, you agree that your contributions will be licensed under the GPL v2 or later license.
+
+## 🤝 Code of Conduct
+
+### Our Pledge
+
+We are committed to providing a welcoming and inspiring community for all.
+
+### Our Standards
+
+**Positive behavior:**
+- Using welcoming and inclusive language
+- Being respectful of differing viewpoints
+- Gracefully accepting constructive criticism
+- Focusing on what is best for the community
+
+**Unacceptable behavior:**
+- Harassment of any kind
+- Trolling or insulting comments
+- Public or private harassment
+- Publishing others' private information
+
+## 📞 Getting Help
+
+- **GitHub Issues** - For bugs and features
+- **Documentation** - Check README.md first
+- **Discussions** - For questions and ideas
+
+## 🎉 Recognition
+
+Contributors will be:
+- Listed in CONTRIBUTORS.md
+- Credited in release notes
+- Mentioned in the README
+
+---
+
+**Thank you for contributing to KynGuard AI!** 🚀
